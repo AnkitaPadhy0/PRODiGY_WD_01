@@ -5,65 +5,62 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  line-height: 1.6;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 .navbar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  background-color: transparent;
-  padding: 20px 50px;
-  color: white;
+  background-color: #20232a;
+  color: #fff;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: 0.3s ease;
-  z-index: 1000;
-}
-
-.navbar.scrolled {
-  background-color: #4A148C; /* Deep purple on scroll */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: white;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-}
-
-.nav-links li {
-  margin-left: 25px;
+  gap: 1.5rem;
 }
 
 .nav-links a {
+  color: white;
   text-decoration: none;
-  color: white;
-  font-size: 18px;
-  transition: color 0.3s;
+  font-weight: 500;
 }
 
-.nav-links a:hover {
-  color: #FF9800; /* Orange on hover */
-}
-
-.section {
-  padding: 120px 50px;
-  min-height: 100vh;
-  color: #333;
-  background-color: #f3f3f3;
-}
-
-.home-section {
-  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-              url('https://source.unsplash.com/1600x900/?technology,coding') no-repeat center center/cover;
-  color: white;
+.hero-section {
+  padding: 100px 20px;
   text-align: center;
+  background-color: #61dafb;
+  color: #20232a;
+}
+
+.hero-section button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #20232a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+footer {
+  background-color: #20232a;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
 }
