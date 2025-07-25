@@ -1,0 +1,69 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f8ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #0a3d62;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #ffffff;
+  border: 2px solid #0a3d62;
+  font-size: 2rem;
+  color: #0a3d62;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.cell:hover {
+  background-color: #dff9fb;
+  transform: scale(1.05);
+}
+
+.cell.winner {
+  background-color: #38ada9;
+  color: #fff;
+}
+
+.status {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  color: #303952;
+  font-weight: bold;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0a3d62;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #1e3799;
+}
