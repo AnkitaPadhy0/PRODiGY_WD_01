@@ -1,0 +1,107 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      text-align: center;
+      padding: 2rem;
+      color: #333;
+    }
+    .weather-container {
+      background-color: rgba(255,255,255,0.9);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      max-width: 400px;
+      margin: auto;
+    }
+    input {
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 70%;
+    }
+    button {
+      padding: 0.6rem 1rem;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="weather-container">
+    <h1>Weather Info</h1>
+    <p>Enter a city name or allow location access</p>
+
+    <input type="text" id="cityInput" placeholder="Enter city name">
+    <button onclick="getWeatherByCity()">Search</button>
+    <button onclick="getWeatherByLocation()">Use My Location</button>
+
+    <div class="result" id="weatherResult"></div>
+  </div>
+
+  <script>
+    const apiKey = "05fc469c9390cec2f75d8eea71bf2b20";
+
+
+    async function getWeatherByCity() {
+      const city = document.getElementById('cityInput').value.trim();
+      if (city === "") {
+        alert("Please enter a city name.");
+        return;
+      }
+      fetchWeather(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+    }
+
+    function getWeatherByLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          fetchWeather(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`);
+        }, () => {
+          alert("Location access denied or unavailable.");
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    async function fetchWeather(url) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("City not found.");
+        const data = await response.json();
+        displayWeather(data);
+      } catch (error) {
+        document.getElementById('weatherResult').innerHTML = `<p style="color:red;">${error.message}</p>`;
+      }
+    }
+
+    function displayWeather(data) {
+      const { name, main, weather, wind } = data;
+      const html = `
+        <h2>${name}</h2>
+        <p><strong>${weather[0].main}</strong> - ${weather[0].description}</p>
+        <p>🌡️ Temperature: ${main.temp} °C</p>
+        <p>💧 Humidity: ${main.humidity}%</p>
+        <p>🌬️ Wind Speed: ${wind.speed} m/s</p>
+      `;
+      document.getElementById('weatherResult').innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
